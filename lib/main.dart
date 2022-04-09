@@ -5,9 +5,22 @@ void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   double gap = 6.0;
-  void playSound(buttonNum) {
+  void playSound(int buttonNum) {
     final player = AudioCache();
     player.play('note$buttonNum.wav');
+  }
+
+  Widget buildKey(int soundNum, colorSelection) {
+    return Expanded(
+      child: Container(
+        color: colorSelection,
+        child: TextButton(
+          onPressed: () {
+            playSound(soundNum);
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -21,83 +34,14 @@ class XylophoneApp extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.red.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('1');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.pink.shade500,
-                      child: TextButton(
-                        style: ButtonStyle(),
-                        onPressed: () {
-                          playSound('2');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.purple.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('3');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.deepPurple.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('4');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.indigo.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('5');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('6');
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: gap),
-                  Expanded(
-                    child: Container(
-                      color: Colors.lightBlue.shade500,
-                      child: TextButton(
-                        onPressed: () {
-                          playSound('7');
-                        },
-                      ),
-                    ),
-                  ),
+                  buildKey(1, Colors.purple.shade600),
+                  buildKey(2, Colors.deepPurple.shade600),
+                  buildKey(3, Colors.indigo.shade600),
+                  buildKey(4, Colors.blue.shade600),
+                  buildKey(5, Colors.lightBlue.shade600),
+                  buildKey(6, Colors.cyan.shade600),
+                  buildKey(7, Colors.teal.shade600),
+                  buildKey(8, Colors.green.shade600),
                 ],
               ),
             ),
